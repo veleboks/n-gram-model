@@ -1,4 +1,3 @@
-import pickle
 from collections import defaultdict, Counter
 import random
 
@@ -22,7 +21,7 @@ class N_gram:
         choice = random.choices(*zip(*self.next_word[prefix].items()))[0]
         return choice
 
-    def generate(self, iters=10):
+    def generate(self, prefix=None, iters=10):
         res = list(random.choice(list(self.next_word.keys())))
         for _ in range(iters):
             prefix = tuple(res[-self.prefix_size+1:])
@@ -32,8 +31,3 @@ class N_gram:
             res += [word]
         # print(res)
         return ' '.join(res)
-
-    def save(self, filename):
-        pass
-    def load(self, filename):
-        pass
